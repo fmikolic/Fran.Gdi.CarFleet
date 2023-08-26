@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "MainDb": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:MainDb"
+    }
+  }
+}
