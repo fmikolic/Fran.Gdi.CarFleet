@@ -10,6 +10,6 @@ namespace Fran.Gdi.CarFleet.Models
 
         public required string Surname { get; set; }
 
-        public virtual ICollection<IVehicleEvent> AllocationEvents { get; set; } = null!;
+        public virtual ICollection<DriverVehicleAllocationEvent> AllocationEvents { get; set; } = null!;
     }
 }

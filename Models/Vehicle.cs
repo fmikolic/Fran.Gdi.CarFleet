@@ -11,5 +11,5 @@ public class Vehicle
     public required int ProductionYear { get; set; }
     public required double MaxLoadCapacityKg { get; set; }
 
-    public virtual ICollection<IVehicleEvent> AllocationEvents { get; set; } = null!;
+    public virtual ICollection<DriverVehicleAllocationEvent> AllocationEvents { get; set; } = null!;
 }
