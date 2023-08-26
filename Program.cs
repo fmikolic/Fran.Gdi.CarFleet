@@ -1,5 +1,7 @@
 using Fran.Gdi.CarFleet.Data;
 using Fran.Gdi.CarFleet.Models;
+using Fran.Gdi.CarFleet.Services;
+using Fran.Gdi.CarFleet.Services.Implementations;
 
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
@@ -35,6 +37,8 @@ namespace Fran.Gdi.CarFleet
 
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
+
+            builder.Services.AddTransient<IDriversService, DriversService>();
 
             var app = builder.Build();
 
