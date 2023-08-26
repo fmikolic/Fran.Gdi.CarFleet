@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Fran.Gdi.CarFleet.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("drivers")]
     public class DriversController : ControllerBase
@@ -21,7 +20,7 @@ namespace Fran.Gdi.CarFleet.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Driver>>> GetAsync()
+        public async Task<ActionResult<List<Driver>>> GetAllAsync()
         {
             var response = await this._drivers.GetAllAsync();
 
@@ -40,7 +39,7 @@ namespace Fran.Gdi.CarFleet.Controllers
         {
             var created = await this._drivers.CreateAsync(name, surname);
 
-            return this.CreatedAtAction(nameof(this.GetByIdAsync), new { id = created.Id }, created);
+            return Ok(created);
         }
 
         [HttpGet("{id}")]
@@ -76,9 +75,16 @@ namespace Fran.Gdi.CarFleet.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<Driver>> UpdateAsync(int id, string? name, string? surname)
         {
-            var created = await this._drivers.UpdateAsync(id, name, surname);
+            try
+            {
+                var updated = await this._drivers.UpdateAsync(id, name: name, surname: surname);
+                return Ok(updated);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return this.NotFound(ex.Query);
+            }
 
-            return this.CreatedAtAction(nameof(this.GetByIdAsync), new { id = created.Id }, created);
         }
     }
 }

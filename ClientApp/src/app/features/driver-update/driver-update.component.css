@@ -1,0 +1,12 @@
+header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+h1 {
+  margin-bottom: var(--spacing-s);
+}
+
+label:not(:last-child) {
+  margin-bottom: var(--spacing-s);
+}

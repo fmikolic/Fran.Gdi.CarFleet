@@ -1,0 +1,62 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+section.drivers {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+h1 {
+  text-align: left;
+  margin-bottom: var(--spacing-s);
+}
+
+.table-container {
+  display: flex;
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+table {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+}
+
+tr:hover {
+  background: var(--color-smoke);
+}
+
+th {
+  background: var(--color-main);
+  color: var(--color-main-inv);
+  position: sticky;
+}
+
+th, td {
+  padding: var(--spacing-xs);
+}
+
+td {
+  border-bottom: 1px solid var(--color-smoke);
+  white-space: nowrap;
+}
+
+  td:not(:last-child) {
+    border-right: 1px dashed var(--color-smoke-light);
+  }
+
+  td.actions > *:not(:first-child) {
+    margin-left: var(--spacing-s);
+  }

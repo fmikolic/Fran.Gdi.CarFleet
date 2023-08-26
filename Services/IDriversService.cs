@@ -18,7 +18,7 @@ public interface IDriversService
     /// <returns>Newly created <see cref="Driver"/>.</returns>
     public Task<Driver> CreateAsync(string name, string surname);
 
-    public Task<Driver> UpdateAsync(int id, string? name, string? surname);
+    public Task<Driver> UpdateAsync(int id, string? name = null, string? surname = null);
 
     public Task DeleteByIdAsync(int id);
 

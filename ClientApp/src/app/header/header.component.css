@@ -1,0 +1,31 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-main);
+  color: var(--color-main-inv);
+}
+
+.top {
+  text-transform: uppercase;
+  padding: var(--spacing-s);
+  text-align: center;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase;
+  justify-content: space-around
+}
+
+  .bottom a {
+    padding: var(--spacing-s);
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+  }
+
+    .bottom a.active {
+      color: var(--color-main);
+      background: var(--color-main-inv);
+      font-weight: bold;
+    }

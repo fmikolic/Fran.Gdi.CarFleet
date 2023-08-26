@@ -1,0 +1,20 @@
+<header>
+  <a class="button" routerLink="/drivers">&times;</a>
+  <!--<button class="button">&check;</button>-->
+</header>
+<section>
+  <h1>Update driver</h1>
+  <label>
+    Name:
+    <input type="text"
+           [(ngModel)]="this.driver.name"
+           placeholder="Name" />
+  </label>
+  <label>
+    Surname:
+    <input type="text"
+           [(ngModel)]="this.driver.surname"
+           placeholder="Surname" />
+  </label>
+  <button (click)="this.addDriver()" [disabled]="!this.canAddDriver">&plus;&nbsp;&nbsp;Update</button>
+</section>

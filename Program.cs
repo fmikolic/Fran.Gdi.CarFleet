@@ -4,8 +4,6 @@ using Fran.Gdi.CarFleet.Services;
 using Fran.Gdi.CarFleet.Services.Implementations;
 
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fran.Gdi.CarFleet
@@ -15,6 +13,8 @@ namespace Fran.Gdi.CarFleet
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddCors();
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString(Constants.Configuration.KEY_MAIN_DB_CONNECTION_STRING)
@@ -35,17 +35,28 @@ namespace Fran.Gdi.CarFleet
                 .AddAuthentication()
                 .AddIdentityServerJwt();
 
+            builder.Services
+                .AddOpenApiDocument(opt => opt.Title = "Car Fleet");
+
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
-
             builder.Services.AddTransient<IDriversService, DriversService>();
 
             var app = builder.Build();
+
+            app.UseCors(x =>
+            {
+                x.AllowAnyHeader();
+                x.AllowAnyOrigin();
+                x.AllowAnyMethod();
+            });
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
+                app.UseOpenApi();
+                app.UseSwaggerUi3();
             }
             else
             {
@@ -64,7 +75,7 @@ namespace Fran.Gdi.CarFleet
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller}/{action=Index}/{id?}");
-
+            
             app.MapRazorPages();
 
             app.MapFallbackToFile("index.html");

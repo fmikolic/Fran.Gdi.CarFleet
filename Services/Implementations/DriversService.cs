@@ -40,7 +40,7 @@ public class DriversService : IDriversService
         return newDriver;
     }
 
-    public async Task<Driver> UpdateAsync(int id, string? name, string? surname)
+    public async Task<Driver> UpdateAsync(int id, string? name = null, string? surname = null)
     {
         var existingDriver = await this._ctx.Drivers
             .FirstOrDefaultAsync(x => x.Id == id)

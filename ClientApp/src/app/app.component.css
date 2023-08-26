@@ -1,0 +1,26 @@
+:host {
+  flex-direction: row;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px;
+  z-index: 1;
+  border-radius: var(--border-radius);
+  min-width: 33vw;
+  max-height: 100%;
+}
+
+  main .page {
+    padding: var(--spacing);
+    display: flex;
+    flex: 1 1 auto;
+    max-width: 100%;
+    overflow: auto;
+  }
+
+app-car-fleet-map {
+  display: flex;
+  flex: 1 1 auto;
+}

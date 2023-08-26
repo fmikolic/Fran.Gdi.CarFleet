@@ -1,20 +1,121 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+:root {
+  --color-main: rgb(0, 174, 240);
+  --color-main-inv: white;
+  --color-danger: #d35d65;
+  --color-danger-inv: white;
+  --color-warning: #ff9548;
+  --color-warning-inv: white;
+  --color-smoke: rgba(0,0,0,0.10);
+  --color-smoke-light: rgba(0,0,0,0.10);
+  --spacing: 16px;
+  --spacing-s: 12px;
+  --spacing-xs: 8px;
+  --spacing-xxs: 4px;
+  --border-radius: 8px;
+  --transition-duration: 0.25s;
+  --shadow-pop: 0px 0px 8px rgba(0,0,0,0.15);
+  --shadow-pop-less: 0px 0px 4px rgba(0,0,0,0.10);
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: normal;
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+  border: none;
 }
 
-code {
-  color: #e01a76;
+html, body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+  font-size: 1rem;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+input,
+.button,
+button {
+  padding: var(--spacing-s);
+  border-radius: var(--border-radius);
+  transition-duration: var(--transition-duration);
+  cursor: pointer;
+  box-shadow: var(--shadow-pop);
+}
+
+  input.mini,
+  .button.mini,
+  button.mini {
+    padding: var(--spacing-xs);
+  }
+
+.button,
+button {
+  --bg: var(--color-main);
+  --color: var(--color-main-inv);
+  background: var(--bg);
+  color: var(--color);
+}
+
+  button.danger,
+  .button.danger {
+    --bg: var(--color-danger);
+    --color: var(--color-danger-inv);
+  }
+
+  button.warning,
+  .button.warning {
+    --bg: var(--color-warning);
+    --color: var(--color-warning-inv);
+  }
+
+
+  .button:hover:not([disabled]),
+  button:hover:not([disabled]) {
+    transform: scale(1.05);
+  }
+
+  input:focus:not([disabled]),
+  .button:hover:not([disabled]),
+  button:active:not([disabled]) {
+    transform: scale(0.95);
+    box-shadow: var(--shadow-pop-less);
+  }
+
+  .button[disabled],
+  button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+}
+
+  label input {
+    margin-top: var(--spacing-xs);
+  }
+
+table {
+  border-collapse: collapse;
+  border-radius: var(--border-radius);
+}
+
+  table tr:first-child th:first-child {
+    border-top-left-radius: var(--border-radius);
+  }
+
+  table tr:first-child th:last-child {
+    border-top-right-radius: var(--border-radius);
+  }
+
+/* Esri ArcGis overrides */
+.esri-view .esri-view-surface--touch-none:focus::after {
+  outline: none !important;
 }
